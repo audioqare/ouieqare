@@ -1,0 +1,90 @@
+<!-- navigation -->
+<div id="navbar" class="navigation nav-text-white py-4 other-nav">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="index.html">
+					<img src="images/logobrm.png" alt="logo">
+				</a>
+				<button role="button" class="navbar-burger burger" data-hidden="true" data-target="navigation">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+
+			<div class="navbar-menu" id="navigation">
+				<ul class="navbar-start ml-auto">
+					<li class="navbar-item">
+						<a class="navbar-link active" href="index.html">Accueil</a>
+					</li>
+
+					<!-- <li class="navbar-item">
+						<a class="navbar-link" href="about.html">About</a>
+					</li> -->
+
+					<li class="navbar-item">
+						<a class="navbar-link active" href="blog-sidebar.html">Blog</a>
+					</li>
+
+					<li class="navbar-item">
+						<a class="navbar-link active" href="about.html">Partenaire</a>
+					</li>
+
+					<li class="navbar-item">
+						<a class="navbar-link active" href="service.html">FAQ</a>
+					</li>
+
+					<!-- <li class="navbar-item has-dropdown">
+						<a class="navbar-link">Partenaire</a>
+						<div class="navbar-dropdown">
+							<a class="navbar-item" href="service.html">Service</a>
+							<a class="navbar-item" href="pricing.html">Pricing</a>
+							<a class="navbar-item" href="blog-sidebar.html">Blog with sidebar</a>
+							<a class="navbar-item" href="blog-single.html">Blog Single</a>
+						</div>
+					</li> -->
+
+					<!-- <li class="navbar-item">
+						<a class="navbar-link active" href="contact.html">Contact</a>
+					</li> -->
+				</ul>
+				<ul class="navbar-end ml-0">
+					<li class="navbar-item">
+						<a href="https://tally.so/r/npLNoq" id="eligibilityButton" class="btn btn-main">Verifier votre éligibilité <i class="fa fa-angle-right ml-2"></i></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+<!-- Page Title Section -->
+<section class="page-title bg-1">
+	<div class="container">
+	   <div class="columns">
+		  <div class="column is-12">
+			 <div class="block has-text-centered">
+				<ul class="list-inline breadcumb-nav">
+				   <!-- You can add breadcrumb items here if needed -->
+				</ul>
+			 </div>
+		  </div>
+	   </div>
+	</div>
+ </section>
+ <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var path = window.location.pathname;
+	  var eligibilityButton = document.getElementById('eligibilityButton');
+	  
+	  if (path.includes('about.html')) {
+		// Change le lien et le texte pour la page 'about.html'
+		eligibilityButton.href = "https://tally.so/r/meBJKo";
+		eligibilityButton.innerHTML = 'Devenez Partenaire<i class="fa fa-angle-right ml-2"></i>';
+	  }
+	});
+  </script>
+  
+ 
+	

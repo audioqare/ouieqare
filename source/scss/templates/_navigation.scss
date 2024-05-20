@@ -1,0 +1,199 @@
+.navigation {
+   .btn-main {
+      background-color: $primary-color;  /* Couleur de fond initiale */
+      color: white;  /* Couleur de texte initiale */
+      transition: background-color 0.3s, color 0.3s;  /* Animation douce pour le changement de couleur */
+      font-size: 14px; /* Taille de texte réduite */
+    padding: 8px 16px;
+  }
+  
+  .btn-main:hover, .btn-main:focus {
+      background-color: white;  /* Couleur de fond au survol et au focus */
+      color: $primary-color;  /* Couleur de texte au survol et au focus */
+  }
+  
+  .btn-main:active {
+      background-color: $primary-color;  /* Couleur de fond lorsque le bouton est cliqué */
+      color: white;  /* Couleur de texte lorsque le bouton est cliqué */
+  }
+  
+}
+.navbar-brand .navbar-item {
+   @include desktop {
+      padding-left: 0;
+      
+      
+   }
+   img {
+      // width: 50%;
+      max-height: unset;
+   }
+}
+
+// Styles pour le logo sur la page d'accueil
+// .home-nav .navbar-brand .navbar-item img {
+//    width: 100%; // taille spécifique pour la home page
+//    max-height: unset;
+   
+// }
+
+// // Styles pour le logo sur les autres pages
+// .other-nav .navbar-brand .navbar-item img {
+//    width: 50%; // taille différente pour les autres pages
+//    max-height: unset;
+//    margin-bottom: 50px;
+   
+// }
+
+.navbar-burger {
+   height: 3rem;
+   width: 3rem;
+   border: 0;
+   margin-top: 5px;
+   outline: 0 !important;
+   &:hover {
+      background-color: #fff !important;
+  }
+}
+.navbar {
+   // margin-top: -100px;
+   // margin-left: -50px;
+   background-color: transparent;
+}
+.navbar-menu {
+   @include desktop {
+      text-align: center;
+      padding-top: 0;
+      padding-bottom: 1.3rem;
+
+
+      .navbar-start>.navbar-item {
+         padding: 0 !important;
+         
+      }
+   }
+}
+#navbar {
+   // position: absolute;
+   // height: 70px;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 5658;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+   margin-top: 0; // S'assurer qu'il n'y a pas de marge au-dessus
+   padding-top: 0;
+
+   .navbar-link {
+      
+      padding-left: 26px;
+      font-weight: 500;
+      color: $black;
+      font-family: $primary-font;
+      text-transform: capitalize;
+      font-size: 18px;
+      padding: 8px !important;
+      transition: all .25s ease;
+      &:hover {
+         color: $primary-color !important;
+         background-color: transparent !important;
+      }
+
+      // &:linked {
+      //    color: $primary-color !important;
+      //    background-color: transparent !important;
+      // }
+
+      // &.active {  // Style pour le lien actif
+      //    color: $primary-color !important; // Assurez-vous que la couleur verte est bien visible
+         
+      // }
+   }
+   a[href$="/project.html"] {
+      color: green; /* Ce style s'applique uniquement aux liens pointant exactement vers "/blog.html" */
+  }
+}
+
+.navbar-item.has-dropdown:hover .navbar-link {
+   background-color: transparent !important;
+   color: $primary-color !important;
+}
+
+.navbar-brand {
+   font-weight: 600;
+
+}
+
+.navbar-dropdown {
+   visibility: hidden;
+   filter: alpha(opacity=0);
+   opacity: 0;
+   transition: all .2s ease-in, visibility 0s linear .2s, transform .2s linear;
+   -webkit-transition: all .2s ease-in, visibility 0s linear .2s, -webkit-transform .2s linear;
+   -o-transition: all .2s ease-in, visibility 0s linear .2s, -o-transform .2s linear;
+   -ms-transition: all .2s ease-in, visibility 0s linear .2s, -ms-transform .2s linear;
+   width: 250px;
+   padding: 8px 0;
+   border-radius: 0px;
+   display: block;
+   border: 1px solid rgba(0, 0, 0, .05);
+
+   @include desktop {
+      visibility: visible;
+      filter: alpha(opacity=1);
+      opacity: 1;
+      display: none;
+      margin-left: auto;
+      margin-right: auto;
+   }
+}
+
+.navbar-link::after {
+   display: none !important;
+}
+
+.has-dropdown:hover .navbar-dropdown {
+   visibility: visible;
+   transition: all .45s ease 0s;
+   opacity: 1;
+}
+
+.navbar-dropdown .navbar-item {
+   padding: .7rem 1.5rem;
+   text-transform: uppercase;
+   font-size: 14px;
+
+   &:hover {
+      background: $primary-color !important;
+      color: $light !important;
+   }
+}
+
+ul.dropdown-menu li {
+   padding-left: 0px !important;
+}
+
+#navbar.nav-text-white {
+   .navbar-link,
+   .navbar-brand {
+      color: $light;
+      @include desktop {
+         color: black;
+      }
+   }
+}
+.navbar-item.has-dropdown {
+   padding: .5rem .75rem;
+}
+.page-title {
+   margin-top: -100px; // Éliminer tout espace au-dessus de la section
+   padding-top: 0; // Assurez-vous qu'il n'y a pas de padding au-dessus
+   background: #1a1a1a; 
+   height: 250px;// Supposons que bg-1 correspond à cette couleur de fond
+
+   .container {
+       padding-top: 0;
+       margin-top: -250px;
+       margin-bottom: 100px; // Supprime le padding supérieur du conteneur de la page-title
+   }
+}

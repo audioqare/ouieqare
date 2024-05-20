@@ -1,0 +1,104 @@
+.banner {
+   position: relative;
+   overflow: hidden;
+   background: url("../images/bg/sanstitre3.png") no-repeat 90% 70% $light;
+   background-size: 25%;
+   padding:0px 0px;
+   @include mobile {
+      padding: 80px 0px;
+   }
+
+   
+
+   .block {
+      padding-top: 120px;
+      @include mobile {
+         padding-top: 100px;
+      }
+
+      h1 {
+         font-size: 75px;
+         line-height: 1.2;
+         font-weight: 400;
+         letter-spacing: -1.2px;
+         text-transform: capitalize;
+      }
+   }
+}
+
+.btn-main {
+   font-size: 18px;  /* Augmente la taille du texte */
+   padding: 12px 24px;  /* Augmente le padding pour un bouton plus grand */
+   display: block;  /* Permet d'appliquer margin auto pour le centrage */
+   width: max-content;  /* Ajuste la largeur autour du contenu */
+   margin: 0 auto;  /* Centre le bouton horizontalement */
+   text-align: center;  /* Assure que le texte est centré dans le bouton */
+}
+.btn-main {
+   background-color: $primary-color;  /* Couleur de fond initiale */
+   color: white;  /* Couleur de texte initiale */
+   transition: background-color 0.3s, color 0.3s;  /* Animation douce pour le changement de couleur */
+}
+
+.btn-main:hover, .btn-main:focus {
+   background-color: white;  /* Couleur de fond au survol et au focus */
+   color: $primary-color;  /* Couleur de texte au survol et au focus */
+}
+
+.btn-main:active {
+   background-color: $primary-color;  /* Couleur de fond lorsque le bouton est cliqué */
+   color: white;  /* Couleur de texte lorsque le bouton est cliqué */
+}
+.letter-spacing {
+   letter-spacing: 2px;
+}
+
+.text-color {
+   color: $secondary-color;
+}
+
+@include large-desktop {
+   .banner {
+      background: $light !important;
+   }
+}
+
+@include desktop {
+   .banner {
+      background: $light !important;
+   }
+}
+
+@include tablet {
+   .banner .block h1 {
+      font-size: 56px;
+      line-height: 70px;
+   }
+
+   .banner {
+      background: $light !important;
+   }
+}
+
+@include mobile {
+   .banner .block h1 {
+      font-size: 38px;
+      line-height: 50px;
+   }
+
+   .banner {
+      background: $light !important;
+   }
+}
+
+@include mobile-xs {
+   .banner .block h1 {
+      font-size: 28px;
+      line-height: 40px;
+   }
+
+   .banner {
+      background: $light !important;
+   }
+
+}
