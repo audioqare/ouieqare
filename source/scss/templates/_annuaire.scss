@@ -1,0 +1,59 @@
+// // Variables de couleurs
+// $primary-color: #007BFF; // Bleu
+// $background-color: #f4f4f4; // Gris clair
+// $text-color: #333; // Gris foncé
+
+// // Styles généraux
+// body {
+//     font-family: 'Arial', sans-serif;
+//     background-color: $background-color;
+//     color: $text-color;
+//     margin: 0;
+//     padding: 20px;
+// }
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+// Styles du formulaire
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-field {
+    padding: 10px;
+    border: 2px solid $primary-color;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+    }
+}
+
+// Styles des résultats
+.results {
+    margin-top: 20px;
+}

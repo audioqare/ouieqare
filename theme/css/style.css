@@ -1809,4 +1809,47 @@ body {
 .widget-contact h6 i {
   color: #6bdf88;
 }
+
+.search-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-field {
+  padding: 10px;
+  border: 2px solid #51eba6;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #51eba6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+.submit-button:hover {
+  background-color: #23e68f;
+}
+
+.results {
+  margin-top: 20px;
+}
 /*# sourceMappingURL=style.css.map */

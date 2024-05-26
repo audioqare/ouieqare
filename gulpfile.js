@@ -11,6 +11,10 @@ const rimraf = require("rimraf");
 const comments = require("gulp-header-comment");
 const jshint = require("gulp-jshint");
 const sitemap = require('gulp-sitemap');
+const nodemon = require('gulp-nodemon');
+// imagemin = require('gulp-imagemin');
+//const cssnano = require('gulp-cssnano');
+// const uglify = require('gulp-uglify');
 
 var path = {
   src: {
@@ -54,6 +58,14 @@ gulp.task("html:build", function () {
     );
 });
 
+gulp.task('start', function () {
+  nodemon({
+    script: 'server.js',
+    ext: 'js html',
+    env: { 'NODE_ENV': 'development' }
+  })
+});
+
 // SCSS
 gulp.task("scss:build", function () {
   return gulp
@@ -81,6 +93,31 @@ gulp.task("scss:build", function () {
       })
     );
 });
+
+// SCSS
+// gulp.task("scss:build", function () {
+//   return gulp
+//     .src(path.src.scss)
+//     .pipe(sourcemaps.init())
+//     .pipe(sass({ outputStyle: "expanded" }).on("error", sass.logError))
+//     .pipe(autoprefixer())
+//     .pipe(cssnano())
+//     .pipe(sourcemaps.write("/"))
+//     .pipe(gulp.dest(path.build.dir + "css/"))
+//     .pipe(bs.reload({ stream: true }));
+// });
+
+// Javascript
+// gulp.task("js:build", function () {
+//   return gulp
+//     .src(path.src.js)
+//     .pipe(jshint("./.jshintrc"))
+//     .pipe(jshint.reporter("jshint-stylish"))
+//     .pipe(uglify())
+//     .pipe(gulp.dest(path.build.dir + "js/"))
+//     .pipe(bs.reload({ stream: true }));
+// });
+
 
 // Javascript
 gulp.task("js:build", function () {
@@ -116,6 +153,26 @@ gulp.task("images:build", function () {
       })
     );
 });
+
+
+// Images
+// gulp.task("images:build", function () {
+//   return gulp
+//     .src(path.src.images)
+//     .pipe(imagemin([
+//       imagemin.mozjpeg({ quality: 75, progressive: true }),
+//       imagemin.optipng({ optimizationLevel: 5 }),
+//       imagemin.svgo({
+//         plugins: [
+//           { removeViewBox: true },
+//           { cleanupIDs: false }
+//         ]
+//       })
+//     ]))
+//     .pipe(gulp.dest(path.build.dir + "images/"))
+//     .pipe(bs.reload({ stream: true }));
+// });
+
 
 // fonts
 gulp.task("fonts:build", function () {
