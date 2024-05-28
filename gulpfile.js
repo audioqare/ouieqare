@@ -208,6 +208,8 @@ gulp.task('generate-sitemap', function () {
 });
 
 
+
+
 // Other files like favicon, php, sourcele-icon on root directory
 gulp.task("others:build", function () {
   return gulp.src(path.src.others).pipe(gulp.dest(path.build.dir));
@@ -242,6 +244,7 @@ gulp.task(
     "plugins:build",
     "others:build",
     "generate-sitemap",
+    "start",
     gulp.parallel("watch:build", function () {
       bs.init({
         server: {

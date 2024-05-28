@@ -160,65 +160,108 @@
    </div>
 </section>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 
 <section class="section blog-wrap">
     <div class="container">
         <div class="columns is-desktop">
             <div class="column is-8-desktop">
-                <section>
-  <div class="search-container">
-    <h1>Rechercher des Centres Audioprothésistes</h1>
-    <form id="searchForm" class="search-form">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Entrez le nom du centre, la ville ou le code postal"
-        class="input-field"
-      />
-      <button type="submit" class="submit-button">Rechercher</button>
-    </form>
-    <div id="results" class="results"></div>
-  </div>
-  <script>
-    document
-      .getElementById("searchForm")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        const searchQuery = document.getElementById("searchInput").value;
+                <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rechercher un Centre Audioprothésiste</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMlJYRouu0WmSpLglvFn_WJGPWiWp0Yo0&libraries=places&callback=initAutocomplete" async defer></script>
+    <script>
+    function initAutocomplete() {
+        var input = document.getElementById('searchInput');
+        var options = {
+            types: ['(regions)'], // Restrict to regions type for broader scope, or use ['geocode'] for addresses
+            componentRestrictions: {country: 'FR'}
+        };
 
-        // Construire l'URL de l'API basée sur la saisie de l'utilisateur
-        let url = new URL('http://localhost:3000/api/centres'),
-            params = {query: searchQuery}
-        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                console.log("No details available for input: '" + place.name + "'");
+                return;
+            }
+            // Process the selected place and extract the postal code or city for the search
+            var addressComponents = place.address_components;
+            var postalCode = addressComponents.find(comp => comp.types.includes("postal_code"))?.short_name || '';
+            var city = addressComponents.find(comp => comp.types.includes("locality"))?.short_name || '';
+            var query = postalCode ? postalCode : city;
+            document.getElementById('searchInput').value = query; // Update input with a formatted query
+            initiateSearch(query);
+        });
+    }
+
+    function initiateSearch(query) {
+        let url = new URL(window.location.hostname === 'localhost' ?
+            'http://localhost:3000/api/centres' : 'https://www.ouieqare.com/api/centres');
+        url.searchParams.append('query', query);
 
         fetch(url)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error('Network response was not OK');
-            }
-            return response.json();
-          })
-          .then((data) => {
-            const resultsContainer = document.getElementById("results");
-            resultsContainer.innerHTML = ""; // Clear previous results
-            if (data.length > 0) {
-              data.forEach((item) => {
-                const div = document.createElement("div");
-                div.textContent = `${item.Account_Name}, ${item.address}, ${item.Ville}, ${item.Code_postal}`;
-                resultsContainer.appendChild(div);
-              });
-            } else {
-              resultsContainer.innerHTML = '<p>Aucun résultat trouvé.</p>';
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            document.getElementById('results').innerHTML = '<p>Erreur lors de la recherche.</p>';
-          });
-      });
-  </script>
-</section>
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not OK');
+                return response.json();
+            })
+            .then(data => {
+                const resultsContainer = document.getElementById("results");
+                resultsContainer.innerHTML = "";
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        const userDiv = document.createElement("div");
+                        userDiv.className = "nearby-user";
+                        userDiv.innerHTML = `
+                            <div class="row align-items-center">
+                                <div class="col-md-2">
+                                    <img src="${item.URL_Image_Centre || 'https://example.com/default-logo.png'}" alt="Logo" class="profile-photo-lg">
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>${item.Account_Name}</h5>
+                                    <p><i class="fas fa-map-marker-alt"></i> ${item.Rue}, ${item.Code_postal} ${item.Ville}</p>
+                                    <p><i class="fas fa-phone"></i> ${item.Phone}</p>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <button class="btn btn-primary" onclick="window.open('https://tally.so/r/wvBMdQ', '_blank')">Prendre RDV</button>
+                                </div>
+                            </div>
+                        `;
+                        resultsContainer.appendChild(userDiv);
+                    });
+                } else {
+                    resultsContainer.innerHTML = '<p>Aucun centre trouvé pour cette recherche.</p>';
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById('results').innerHTML = '<p>Aucun centre dans cette zone.</p>';
+            });
+    }
+    </script>
+</head>
+<body>
+    <section>
+        <h1>Rechercher un Centre Audioprothésiste</h1>
+        <form id="searchForm" class="search-form">
+            <input type="text" id="searchInput" placeholder="Entrez le département, la ville ou le code postal" class="input-field" autocomplete="on"/>
+            <button type="submit" class="submit-button">Rechercher</button>
+        </form>
+        <div id="autocompleteResults" class="autocomplete-results"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="people-nearby" id="results"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
 
             </div>
             <!-- <div class="column is-4-desktop">
@@ -390,7 +433,7 @@
      <script src="plugins/modal-video/modal-video.js"></script>
     <!-- Google Map -->
     <script src="plugins/google-map/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>     -->
     
     <script src="js/script.js"></script>
 
