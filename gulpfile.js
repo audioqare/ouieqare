@@ -58,13 +58,13 @@ gulp.task("html:build", function () {
     );
 });
 
-gulp.task('start', function () {
-  nodemon({
-    script: 'server.js',
-    ext: 'js html',
-    env: { 'NODE_ENV': 'development' }
-  })
-});
+// gulp.task('start', function () {
+//   nodemon({
+//     script: 'server.js',
+//     ext: 'js html',
+//     env: { 'NODE_ENV': 'development' }
+//   })
+// });
 
 // SCSS
 gulp.task("scss:build", function () {
@@ -244,7 +244,6 @@ gulp.task(
     "plugins:build",
     "others:build",
     "generate-sitemap",
-    "start",
     gulp.parallel("watch:build", function () {
       bs.init({
         server: {
