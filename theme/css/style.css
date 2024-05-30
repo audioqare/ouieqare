@@ -543,6 +543,7 @@ textarea.input {
 }
 
 .navbar {
+  margin-top: 0;
   background-color: transparent;
 }
 
@@ -558,13 +559,14 @@ textarea.input {
 }
 
 #navbar {
-  top: 0;
+  margin-top: 0; /* Aucune marge au-dessus de la navbar */
+  padding-top: 0; /* Aucun padding en haut pour éliminer tout espace supplémentaire */
+  position: absolute; /* Pour positionner absolument la navbar sur le reste du contenu */
+  top: 0; /* Assure que la navbar est tout en haut de la page */
   left: 0;
   width: 100%;
   z-index: 5658;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  margin-top: 0;
-  padding-top: 0;
 }
 #navbar .navbar-link {
   padding-left: 26px;
@@ -658,15 +660,15 @@ ul.dropdown-menu li {
 }
 
 .page-title {
-  margin-top: -100px;
-  padding-top: 0;
+  margin-top: 110px;
+  padding-top: 0px;
   background: #1a1a1a;
-  height: 250px;
+  height: 150px;
 }
 .page-title .container {
   padding-top: 0;
-  margin-top: -250px;
-  margin-bottom: 100px;
+  margin-top: -200px;
+  margin-bottom: 0px;
 }
 
 .bg-1 {
@@ -683,7 +685,7 @@ ul.dropdown-menu li {
   position: relative;
   overflow: hidden;
   background: url("../images/bg/sanstitre3.png") no-repeat 90% 70% #fff;
-  background-size: 25%;
+  background-size: 20%;
   padding: 0px 0px;
 }
 @media (max-width: 575px) {

@@ -55,8 +55,9 @@
       background-color: #fff !important;
   }
 }
+
 .navbar {
-   // margin-top: -100px;
+   margin-top: 0;
    // margin-left: -50px;
    background-color: transparent;
 }
@@ -74,15 +75,15 @@
    }
 }
 #navbar {
-   // position: absolute;
-   // height: 70px;
-   top: 0;
+   margin-top: 0; /* Aucune marge au-dessus de la navbar */
+   padding-top: 0; /* Aucun padding en haut pour éliminer tout espace supplémentaire */
+   position: absolute; /* Pour positionner absolument la navbar sur le reste du contenu */
+   top: 0; /* Assure que la navbar est tout en haut de la page */
    left: 0;
    width: 100%;
    z-index: 5658;
    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-   margin-top: 0; // S'assurer qu'il n'y a pas de marge au-dessus
-   padding-top: 0;
+
 
    .navbar-link {
       
@@ -186,14 +187,14 @@ ul.dropdown-menu li {
    padding: .5rem .75rem;
 }
 .page-title {
-   margin-top: -100px; // Éliminer tout espace au-dessus de la section
-   padding-top: 0; // Assurez-vous qu'il n'y a pas de padding au-dessus
+   margin-top: 110px; // Éliminer tout espace au-dessus de la section
+   padding-top: 0px; // Assurez-vous qu'il n'y a pas de padding au-dessus
    background: #1a1a1a; 
-   height: 250px;// Supposons que bg-1 correspond à cette couleur de fond
+   height: 150px;// Supposons que bg-1 correspond à cette couleur de fond
 
    .container {
        padding-top: 0;
-       margin-top: -250px;
-       margin-bottom: 100px; // Supprime le padding supérieur du conteneur de la page-title
+       margin-top: -200px;
+       margin-bottom: 0px; // Supprime le padding supérieur du conteneur de la page-title
    }
 }
