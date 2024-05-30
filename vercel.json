@@ -1,7 +1,8 @@
 {
     "version": 2,
     "builds": [
-      { "src": "gulpfile.js", "use": "@vercel/static-build", "config": { "distDir": "theme" } }
+      { "src": "api/**/*.js", "use": "@vercel/node" },
+      { "src": "theme/**", "use": "@vercel/static" }
     ],
     "routes": [
       { "src": "/api/(.*)", "dest": "/api/$1" },
