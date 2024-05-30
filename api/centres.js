@@ -1,15 +1,15 @@
 import axios from 'axios';
-import getAccessToken from './getAccessToken.js';
+import { getAccessToken } from './getAccessToken.js';
 
-const fetchCentres = async (req, res) => {
+export default async (req, res) => {
     const { query } = req.query;
     let criteria = '(Layout.id:equals:6266060000000091029)'; // Pré-filtrage pour les centres
 
-    if (/^\d{2}$/.test(query)) { // Département
+    if (/^\d{2}$/.test(query)) {
         criteria += ` and (D_partement:equals:${query})`;
-    } else if (/^\d{5}$/.test(query)) { // Code postal
+    } else if (/^\d{5}$/.test(query)) {
         criteria += ` and (Code_postal:equals:${query})`;
-    } else { // Ville
+    } else {
         criteria += ` and (Ville:equals:${query})`;
     }
 
@@ -24,5 +24,3 @@ const fetchCentres = async (req, res) => {
         res.status(500).send('Erreur serveur interne');
     }
 };
-
-export default fetchCentres;
