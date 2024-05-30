@@ -1,10 +1,10 @@
-const axios = require('axios');
-const getAccessToken = require('./getAccessToken');
+import axios from 'axios';
+import getAccessToken from './getAccessToken.js';
 
-module.exports = async (req, res) => {
+const fetchCentres = async (req, res) => {
     const { query } = req.query;
-
     let criteria = '(Layout.id:equals:6266060000000091029)'; // Pré-filtrage pour les centres
+
     if (/^\d{2}$/.test(query)) { // Département
         criteria += ` and (D_partement:equals:${query})`;
     } else if (/^\d{5}$/.test(query)) { // Code postal
@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const accessToken = await getAccessToken(); // Assurez-vous de gérer cette fonction correctement
+        const accessToken = await getAccessToken();
         const response = await axios.get(`https://www.zohoapis.com/crm/v2/Accounts/search?criteria=${criteria}`, {
             headers: { 'Authorization': `Zoho-oauthtoken ${accessToken}` }
         });
@@ -24,3 +24,5 @@ module.exports = async (req, res) => {
         res.status(500).send('Erreur serveur interne');
     }
 };
+
+export default fetchCentres;

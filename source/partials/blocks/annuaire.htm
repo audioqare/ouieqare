@@ -31,9 +31,9 @@
     }
 
     function initiateSearch(query) {
-        //let url = new URL(window.location.hostname === 'localhost' ?
-            //'http://localhost:3000/api/centres' : 'https://www.ouieqare.com/api/centres');
-            let url = new URL(`${window.location.origin}/api/centres`);
+        let url = new URL(window.location.hostname === 'localhost' ?
+            'http://localhost:3000/api/centres' : 'https://www.ouieqare.com/api/centres');
+            // let url = new URL(`${window.location.origin}/api/centres`);
         url.searchParams.append('query', query);
 
         fetch(url)
@@ -56,7 +56,7 @@
                                 <div class="col-md-6">
                                     <h5>${item.Account_Name}</h5>
                                     <p><i class="fas fa-map-marker-alt"></i> ${item.Rue}, ${item.Code_postal} ${item.Ville}</p>
-                                    <p><i class="fas fa-phone"></i> ${item.Phone}</p>
+                                    <p><i class="fas fa-phone"></i> 0985407228</p>
                                 </div>
                                 <div class="col-md-4 text-right">
                                     <button class="btn btn-primary" onclick="window.open('https://tally.so/r/wvBMdQ', '_blank')">Prendre RDV</button>

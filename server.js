@@ -148,36 +148,36 @@
 
 
 
-// Nouvelle route pour récupérer tous les comptes de Zoho CRM
-// Route API pour récupérer tous les comptes
+// //Nouvelle route pour récupérer tous les comptes de Zoho CRM
+// //Route API pour récupérer tous les comptes
 
-// app.get('/api/comptes', async (req, res) => {
-//   try {
-//     const accounts = await fetchZohoAccounts();
-//     res.json(accounts);
-//   } catch (error) {
-//     console.error('Erreur lors de la récupération des comptes', error);
-//     res.status(500).json({ message: 'Erreur lors de la récupération des comptes', error: error.message });
-//   }
-// });
+// // app.get('/api/comptes', async (req, res) => {
+// //   try {
+// //     const accounts = await fetchZohoAccounts();
+// //     res.json(accounts);
+// //   } catch (error) {
+// //     console.error('Erreur lors de la récupération des comptes', error);
+// //     res.status(500).json({ message: 'Erreur lors de la récupération des comptes', error: error.message });
+// //   }
+// // });
 
-// app.get('/api/autocomplete', async (req, res) => {
-//   const { term } = req.query;
-//   if (!term) {
-//     return res.status(400).json({ error: 'Recherche requise' });
-//   }
+// // app.get('/api/autocomplete', async (req, res) => {
+// //   const { term } = req.query;
+// //   if (!term) {
+// //     return res.status(400).json({ error: 'Recherche requise' });
+// //   }
 
-//   // Simulez une recherche dans votre base de données ou dans un tableau en mémoire
-//   // Ici, on suppose que vous avez une liste des départements et leurs codes
-//   const departements = [
-//     { name: "Paris (75)", code: "75" },
-//     { name: "Hauts-de-Seine (92)", code: "92" },
-//     // Ajoutez d'autres départements
-//   ];
+// //   // Simulez une recherche dans votre base de données ou dans un tableau en mémoire
+// //   // Ici, on suppose que vous avez une liste des départements et leurs codes
+// //   const departements = [
+// //     { name: "Paris (75)", code: "75" },
+// //     { name: "Hauts-de-Seine (92)", code: "92" },
+// //     // Ajoutez d'autres départements
+// //   ];
 
-//   const filtered = departements.filter(dep => dep.code.startsWith(term) || dep.name.toLowerCase().includes(term.toLowerCase()));
-//   res.json(filtered);
-// });
+// //   const filtered = departements.filter(dep => dep.code.startsWith(term) || dep.name.toLowerCase().includes(term.toLowerCase()));
+// //   res.json(filtered);
+// // });
 
 
 // app.get('/api/departements', async (req, res) => {

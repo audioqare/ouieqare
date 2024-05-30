@@ -9,7 +9,7 @@
     "dev": "gulp",
     "build": "gulp build",
     "start": "gulp"
-  },  
+  },   
   
   "dependencies": {
     "axios": "^1.7.2",

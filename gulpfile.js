@@ -244,6 +244,7 @@ gulp.task(
     "plugins:build",
     "others:build",
     "generate-sitemap",
+    // "start",
     gulp.parallel("watch:build", function () {
       bs.init({
         server: {
