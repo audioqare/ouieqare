@@ -528,7 +528,8 @@ textarea.input {
   }
 }
 .navbar-brand .navbar-item img {
-  max-height: unset;
+  max-width: 100%;
+  height: auto;
 }
 
 .navbar-burger {
@@ -644,10 +645,6 @@ ul.dropdown-menu li {
   padding-left: 0px !important;
 }
 
-#navbar.nav-text-white .navbar-link,
-#navbar.nav-text-white .navbar-brand {
-  color: #fff;
-}
 @media (max-width: 1023px) {
   #navbar.nav-text-white .navbar-link,
   #navbar.nav-text-white .navbar-brand {
@@ -660,7 +657,7 @@ ul.dropdown-menu li {
 }
 
 .page-title {
-  margin-top: 110px;
+  margin-top: 30px;
   padding-top: 0px;
   background: #1a1a1a;
   height: 150px;

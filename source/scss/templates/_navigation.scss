@@ -20,13 +20,12 @@
 }
 .navbar-brand .navbar-item {
    @include desktop {
-      padding-left: 0;
-      
+      padding-left: 0;    
       
    }
    img {
-      // width: 50%;
-      max-height: unset;
+      max-width: 100%;  // S'assure que l'image ne dépasse pas son conteneur
+      height: auto;
    }
 }
 
@@ -63,6 +62,7 @@
 }
 .navbar-menu {
    @include desktop {
+      
       text-align: center;
       padding-top: 0;
       padding-bottom: 1.3rem;
@@ -177,7 +177,7 @@ ul.dropdown-menu li {
 #navbar.nav-text-white {
    .navbar-link,
    .navbar-brand {
-      color: $light;
+      //color: $light;
       @include desktop {
          color: black;
       }
@@ -187,7 +187,7 @@ ul.dropdown-menu li {
    padding: .5rem .75rem;
 }
 .page-title {
-   margin-top: 110px; // Éliminer tout espace au-dessus de la section
+   margin-top: 30px; // Éliminer tout espace au-dessus de la section
    padding-top: 0px; // Assurez-vous qu'il n'y a pas de padding au-dessus
    background: #1a1a1a; 
    height: 150px;// Supposons que bg-1 correspond à cette couleur de fond
@@ -198,3 +198,6 @@ ul.dropdown-menu li {
        margin-bottom: 0px; // Supprime le padding supérieur du conteneur de la page-title
    }
 }
+
+
+
