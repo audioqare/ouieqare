@@ -190,13 +190,18 @@ ul.dropdown-menu li {
    margin-top: 30px; // Éliminer tout espace au-dessus de la section
    padding-top: 0px; // Assurez-vous qu'il n'y a pas de padding au-dessus
    background: #1a1a1a; 
-   height: 150px;// Supposons que bg-1 correspond à cette couleur de fond
+   height: 100px;// Supposons que bg-1 correspond à cette couleur de fond
 
    .container {
        padding-top: 0;
        margin-top: -200px;
        margin-bottom: 0px; // Supprime le padding supérieur du conteneur de la page-title
    }
+   .text-lg {
+      font-size: 30px;
+      color: white !important;  /* Utilisation de !important pour forcer la couleur */
+  }
+  
 }
 
 
