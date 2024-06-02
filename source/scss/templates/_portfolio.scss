@@ -1,5 +1,10 @@
 .portfolio {
-	position: relative;
+	margin: 0 auto;  // Ajoute automatiquement une marge égale des deux côtés
+      // Ajustez cette valeur en fonction de la largeur souhaitée pour votre design
+    position: relative;
+    background-color: #f7f7f7; 
+	height: auto;
+	padding: 50px 0; 
 
 	&:before {
 		position: absolute;
@@ -8,7 +13,7 @@
 		top: 0px;
 		width: 100%;
 		height: 500px;
-		background-color: #f7f7f7;
+		//background-color: #f7f7f7;
 		
 	}
 }

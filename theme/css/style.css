@@ -544,7 +544,8 @@ textarea.input {
 }
 
 .navbar {
-  margin-top: 0;
+  margin-top: 30px;
+  margin-bottom: 20px;
   background-color: transparent;
 }
 
@@ -657,8 +658,8 @@ ul.dropdown-menu li {
 }
 
 .page-title {
-  margin-top: 30px;
-  padding-top: 0px;
+  margin-top: 60px;
+  padding-top: 30px;
   background: #1a1a1a;
   height: 100px;
 }
@@ -685,8 +686,8 @@ ul.dropdown-menu li {
 .banner {
   position: relative;
   overflow: hidden;
-  background: url("../images/bg/sanstitre3.png") no-repeat 90% 70% #fff;
-  background-size: 20%;
+  background: url("../images/bg/sanstitre3.png") no-repeat 1000px 90px #fff;
+  background-size: 30%;
   padding: 0px 0px;
 }
 @media (max-width: 575px) {
@@ -781,6 +782,21 @@ ul.dropdown-menu li {
     background: #fff !important;
   }
 }
+.client-info {
+  display: flex;
+  align-items: center; /* Centre verticalement les éléments dans leur conteneur */
+  margin-bottom: 20px; /* Espace entre les blocs de témoignages */
+}
+
+.client-img img {
+  border-radius: 50%; /* Rend les images circulaires */
+  width: 80px;
+  height: 80px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block; /* Élimine les espaces indésirables sous l'image */
+}
+
 body {
   padding-top: 70px; /* Ajustez cette valeur selon la hauteur de votre navbar */
 }
@@ -1087,6 +1103,7 @@ body {
 
 .cta-content {
   padding: 40px;
+  max-width: 100%;
 }
 @media (max-width: 575px) {
   .cta-content {
@@ -1198,7 +1215,11 @@ body {
 }
 
 .portfolio {
+  margin: 0 auto;
   position: relative;
+  background-color: #f7f7f7;
+  height: auto;
+  padding: 50px 0;
 }
 .portfolio:before {
   position: absolute;
@@ -1207,7 +1228,6 @@ body {
   top: 0px;
   width: 100%;
   height: 500px;
-  background-color: #f7f7f7;
 }
 
 .portflio-item:before {

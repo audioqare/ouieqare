@@ -29,21 +29,6 @@
    }
 }
 
-// Styles pour le logo sur la page d'accueil
-// .home-nav .navbar-brand .navbar-item img {
-//    width: 100%; // taille spécifique pour la home page
-//    max-height: unset;
-   
-// }
-
-// // Styles pour le logo sur les autres pages
-// .other-nav .navbar-brand .navbar-item img {
-//    width: 50%; // taille différente pour les autres pages
-//    max-height: unset;
-//    margin-bottom: 50px;
-   
-// }
-
 .navbar-burger {
    height: 3rem;
    width: 3rem;
@@ -56,7 +41,8 @@
 }
 
 .navbar {
-   margin-top: 0;
+   margin-top: 30px;
+   margin-bottom: 20px;
    // margin-left: -50px;
    background-color: transparent;
 }
@@ -99,16 +85,6 @@
          color: $primary-color !important;
          background-color: transparent !important;
       }
-
-      // &:linked {
-      //    color: $primary-color !important;
-      //    background-color: transparent !important;
-      // }
-
-      // &.active {  // Style pour le lien actif
-      //    color: $primary-color !important; // Assurez-vous que la couleur verte est bien visible
-         
-      // }
    }
    a[href$="/project.html"] {
       color: green; /* Ce style s'applique uniquement aux liens pointant exactement vers "/blog.html" */
@@ -187,8 +163,8 @@ ul.dropdown-menu li {
    padding: .5rem .75rem;
 }
 .page-title {
-   margin-top: 30px; // Éliminer tout espace au-dessus de la section
-   padding-top: 0px; // Assurez-vous qu'il n'y a pas de padding au-dessus
+   margin-top: 60px; // Éliminer tout espace au-dessus de la section
+   padding-top: 30px; // Assurez-vous qu'il n'y a pas de padding au-dessus
    background: #1a1a1a; 
    height: 100px;// Supposons que bg-1 correspond à cette couleur de fond
 

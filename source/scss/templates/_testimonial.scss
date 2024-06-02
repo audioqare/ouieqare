@@ -1,0 +1,13 @@
+.client-info {
+    display: flex;
+    align-items: center; /* Centre verticalement les éléments dans leur conteneur */
+    margin-bottom: 20px; /* Espace entre les blocs de témoignages */
+}
+
+.client-img img {
+    border-radius: 50%; /* Rend les images circulaires */
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    display: block; /* Élimine les espaces indésirables sous l'image */
+}
