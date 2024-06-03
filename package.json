@@ -1,15 +1,16 @@
 {
   "name": "orbitor-bulma",
   "version": "1.0.0",
-  "type":"module",
   "description": "orbitor free bulma agency template",
   "author": "Themefisher",
   "license": "MIT",
   "scripts": {
     "dev": "gulp",
-    "copy-api": "ncp ./api ./theme/api",
-    "build": "gulp build && npm run copy-api",
-    "start": "gulp"
+    "copy-server": "ncp ./server.js ./theme/server.js",
+    "build": "gulp build && npm run copy-server",
+    "prebuild":"npm install -g gulp-cli",
+    "start": "nodemon server.js",
+    "serve":"node server.js"
   },
   "dependencies": {
     "axios": "^1.7.2",
