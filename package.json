@@ -4,13 +4,12 @@
   "description": "orbitor free bulma agency template",
   "author": "Themefisher",
   "license": "MIT",
-  
   "scripts": {
     "dev": "gulp",
-    "build": "gulp build",
+    "copy-api": "ncp ./api ./theme/api",
+    "build": "gulp build && npm run copy-api",
     "start": "gulp"
-  },   
-  
+  },
   "dependencies": {
     "axios": "^1.7.2",
     "body-parser": "^1.20.2",
@@ -39,6 +38,7 @@
     "gulp-nodemon": "^2.5.0",
     "gulp-sitemap": "^8.0.0",
     "gulp-uglify": "^3.0.2",
+    "ncp": "^2.0.0",
     "nodemon": "^3.1.1"
   }
 }
