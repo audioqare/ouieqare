@@ -1,6 +1,7 @@
 {
   "name": "orbitor-bulma",
   "version": "1.0.0",
+  "type":"module",
   "description": "orbitor free bulma agency template",
   "author": "Themefisher",
   "license": "MIT",
