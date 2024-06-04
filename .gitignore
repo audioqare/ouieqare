@@ -1,0 +1,33 @@
+# Dépendances
+/node_modules
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichiers de Runtime
+/pids
+/*.pid
+/*.seed
+/*.log
+
+# Répertoires de build
+/build
+/dist
+
+# Fichiers de build temporaires
+newrelic_agent.log
+
+# Répertoires créés par npm
+.npm
+
+# Fichiers d'environnement
+.env
+
+# Fichier de base de données local
+*.sqlite
+
+# Fichiers et dossiers temporaires
+tmp
+temp
