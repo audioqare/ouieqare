@@ -31,9 +31,9 @@
     }
 
     function initiateSearch(query) {
-        let url = new URL(window.location.hostname === 'localhost' ?
-            'http://localhost:3000/api/centres' : 'https://www.ouieqare.com/api/centres');
-            //let url = new URL(`${window.location.origin}/api/centres`);
+        // let url = new URL(window.location.hostname === 'localhost' ?
+        //     'http://localhost:3000/api/centres' : 'https://www.ouieqare.com/api/centres');
+            let url = new URL(`${window.location.origin}/api/centres`);
         url.searchParams.append('query', query);
 
         fetch(url)
