@@ -18,16 +18,36 @@
   }
   
 }
-.navbar-brand .navbar-item {
-   @include desktop {
-      padding-left: 0;    
-      
-   }
-   img {
-      max-width: 100%;  // S'assure que l'image ne dépasse pas son conteneur
-      height: auto;
+/* CSS pour agrandir le logo dans la barre de navigation */
+.navbar-brand .navbar-item img {
+   max-width: 200px;  /* Maximum width */
+   max-height: 80px;  /* Maximum height */
+   width: auto;       /* Scales width to maintain aspect ratio based on height */
+   height: auto;      /* Scales height to maintain aspect ratio based on width */
+}
+
+
+@media (max-width: 1200px) {
+   .navbar-brand .navbar-item img {
+       max-width: 120px;  /* Taille plus petite pour les écrans mobiles */
+       max-height: 60px;  /* Hauteur réduite proportionnellement */
+       height: auto;
+       width: auto;
    }
 }
+
+
+
+// .navbar-brand .navbar-item {
+//    @include desktop {
+//       padding-left: 0;    
+      
+//    }
+//    img {
+//       max-width: 100%;  // S'assure que l'image ne dépasse pas son conteneur
+//       height: auto;
+//    }
+// }
 
 .navbar-burger {
    height: 3rem;
@@ -163,7 +183,7 @@ ul.dropdown-menu li {
    padding: .5rem .75rem;
 }
 .page-title {
-   margin-top: 60px; // Éliminer tout espace au-dessus de la section
+   margin-top: 80px; // Éliminer tout espace au-dessus de la section
    padding-top: 30px; // Assurez-vous qu'il n'y a pas de padding au-dessus
    background: #1a1a1a; 
    height: 100px;// Supposons que bg-1 correspond à cette couleur de fond

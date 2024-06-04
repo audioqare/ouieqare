@@ -522,16 +522,22 @@ textarea.input {
   color: white; /* Couleur de texte lorsque le bouton est cliqué */
 }
 
-@media (max-width: 1023px) {
-  .navbar-brand .navbar-item {
-    padding-left: 0;
-  }
-}
+/* CSS pour agrandir le logo dans la barre de navigation */
 .navbar-brand .navbar-item img {
-  max-width: 100%;
-  height: auto;
+  max-width: 200px; /* Maximum width */
+  max-height: 80px; /* Maximum height */
+  width: auto; /* Scales width to maintain aspect ratio based on height */
+  height: auto; /* Scales height to maintain aspect ratio based on width */
 }
 
+@media (max-width: 1200px) {
+  .navbar-brand .navbar-item img {
+    max-width: 120px; /* Taille plus petite pour les écrans mobiles */
+    max-height: 60px; /* Hauteur réduite proportionnellement */
+    height: auto;
+    width: auto;
+  }
+}
 .navbar-burger {
   height: 3rem;
   width: 3rem;
@@ -658,7 +664,7 @@ ul.dropdown-menu li {
 }
 
 .page-title {
-  margin-top: 60px;
+  margin-top: 80px;
   padding-top: 30px;
   background: #1a1a1a;
   height: 100px;
@@ -687,12 +693,13 @@ ul.dropdown-menu li {
   position: relative;
   overflow: hidden;
   padding-bottom: 50px;
-  margin-top: 70px;
+  margin-top: 87px;
   background-color: rgb(246, 250, 250);
 }
 @media (max-width: 575px) {
   .banner {
     padding: 80px 0px;
+    background-color: rgb(246, 250, 250);
   }
 }
 .banner .block {
