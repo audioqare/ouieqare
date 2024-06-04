@@ -8,8 +8,8 @@
     "dev": "gulp",
     "copy-server": "ncp ./server.js ./theme/server.js",
     "build": "gulp build && npm run copy-server",
-    "prebuild":"npm install -g gulp-cli",
-    "start": "nodemon server.js",
+    "prebuild": "npm install -g gulp-cli",
+    "start": "node server.js",
     "serve":"node server.js"
   },
   "dependencies": {
@@ -42,5 +42,8 @@
     "gulp-uglify": "^3.0.2",
     "ncp": "^2.0.0",
     "nodemon": "^3.1.1"
+  },
+  "engines": {
+    "node":"16.x"
   }
 }
