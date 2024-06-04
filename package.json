@@ -4,6 +4,7 @@
   "description": "orbitor free bulma agency template",
   "author": "Themefisher",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "gulp",
     "copy-server": "ncp ./server.js ./theme/server.js",
