@@ -7,7 +7,7 @@ console.log("Client ID:", process.env.CLIENT_ID);
 console.log("Client Secret:", process.env.CLIENT_SECRET);
 console.log("Redirect URI:", process.env.REDIRECT_URL);
 
-
+const fetch = require("node-fetch");
 const express = require('express');
 const axios = require('axios');
 const app = express();
@@ -88,29 +88,29 @@ const getAccessToken = async () => {
 };
 
 // Fonction pour récupérer tous les comptes de Zoho CRM
-async function fetchZohoAccounts() {
-  const accessToken = await getAccessToken();
-  const url = 'https://www.zohoapis.com/crm/v2/Accounts';
+// async function fetchZohoAccounts() {
+//   const accessToken = await getAccessToken();
+//   const url = 'https://www.zohoapis.com/crm/v2/Accounts';
 
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        'Authorization': `Zoho-oauthtoken ${accessToken}`,
-        'Content-Type': 'application/json'
-      }
-    });
+//   try {
+//     const response = await axios.get(url, {
+//       headers: {
+//         'Authorization': `Zoho-oauthtoken ${accessToken}`,
+//         'Content-Type': 'application/json'
+//       }
+//     });
 
-    if (!response.data) {
-      console.error("Error fetching accounts:", response.statusText);
-      throw new Error('Unable to fetch accounts');
-    }
+//     if (!response.data) {
+//       console.error("Error fetching accounts:", response.statusText);
+//       throw new Error('Unable to fetch accounts');
+//     }
 
-    return response.data.data; // Cette partie renvoie les comptes récupérés
-  } catch (error) {
-    console.error(`Error fetching accounts:`, error);
-    throw error;
-  }
-}
+//     return response.data.data; // Cette partie renvoie les comptes récupérés
+//   } catch (error) {
+//     console.error(`Error fetching accounts:`, error);
+//     throw error;
+//   }
+// }
 
 
 app.get('/api/centres', async (req, res) => {
