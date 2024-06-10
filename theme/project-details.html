@@ -15,6 +15,8 @@
   <meta name="description" content="ouieqare,appareils auditifs">
   <meta name="author" content="Ouieqare.com">
   <meta name="google-adsense-account" content="ca-pub-9198491242632785">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9198491242632785"
+     crossorigin="anonymous"></script>
   
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -73,7 +75,7 @@
 					</li>
 					
 					<li class="navbar-item">
-					   <a class="navbar-link" href="annuaire.html">Annuaire Centres</a>
+					   <a class="navbar-link" href="annuaire.html">Annuaire Des Centres</a>
 				   </li>
 					
 
@@ -140,6 +142,19 @@
  
 	
 
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		var params = new URLSearchParams(window.location.search);
+		var name = params.get('name');
+		if (name) {
+			document.title = decodeURIComponent(name) + " - Détails du Projet"; // Modifier le titre de la page
+			var pageTitleElements = document.querySelectorAll('.page-title h2');
+			pageTitleElements.forEach(function(element) {
+				element.textContent = decodeURIComponent(name); // Modifier les titres visibles sur la page
+			});
+		}
+	});
+	</script>
 <section class="page-title bg-1">
    <div class="container" style="padding-top: 0px; padding-bottom: 0px; margin-top: 0px; margin-bottom: -50px;">
       <div class="columns">
@@ -172,8 +187,9 @@
 
 				<div class="column lg-6 column md-8">
 					<div class="case-content pl-4 mt-4 mt-lg-0">
-						<h3 class="mb-3">Engaging content and flexible User experience help to gcolumns more</h3>
-
+						<h3 class="mb-3" id="name"></h3>
+					<p id="phone"></p>
+					<p id="address"></p>
 						<p>Accusamus necessitatibus harum nobis quam omnis tempora cupiditate nihil, vero dolorum porro atque. Suscipit assumenda, minus tempora aliquid, ratione minima optio nihil.</p>
 
 						<ul class="list-unstyled project-info-list">
@@ -216,28 +232,6 @@
 					<img src="images/about/process-3.jpg" alt="" class="w-100">
 					<h4 class="mt-3">Our Success</h4>
 					<p>Eveniet nisi eius qui necessitatibus exercitationem, quam suscipit harum, nostrum reprehenderit nobis error</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-
-<section class="section single-testimonial bg-gray">
-	<div class="container">
-		<div class="columns is-justify-content-center">
-			<div class="column lg-8">
-				<div class="single-testimonial-block has-text-centered">
-					<h2 class="mb-4">Testimonial</h2>
-					<img src="images/team/testimonial1.jpg" alt="" class="w-100 rounded-circle">
-
-					<div class="info mb-4 mt-4">
-						<h6 class="mb-0">John Partho</h6>
-						<span>Newyork USA</span>
-					</div>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ex atque pariatur consequuntur maiores asperiores laudantium repellendus dolore quia eaque reprehenderit aliquam, quisquam similique dignissimos quas culpa eum fugit. Dolore.
-					</p>
 				</div>
 			</div>
 		</div>
@@ -333,3 +327,5 @@
 
   </body>
   </html>
+
+
