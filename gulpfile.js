@@ -17,6 +17,15 @@ const nodemon = require('gulp-nodemon');
 // const uglify = require('gulp-uglify');
 
 
+
+// Importation dynamique de del
+async function clean() {
+  const del = await import('del');
+  return del.default(['theme/**', '!theme/server.js']); // Assurez-vous d'utiliser del.default
+}
+
+gulp.task('clean', clean);
+
 var path = {
   src: {
     html: "source/*.html",
@@ -33,6 +42,8 @@ var path = {
     dir: "theme/",
   },
 };
+
+
 
 // HTML
 gulp.task("html:build", function () {

@@ -27,8 +27,17 @@ app.use(cors(corsOptions));
 app.use(express.static('theme'));
 
 
+// app.use((req, res, next) => {
+//   if (req.path.indexOf('.') === -1) {
+//     var file = __dirname + '/theme' + req.path + '.html';
+//     res.sendFile(file);
+//   } else {
+//     next();
+//   }
+// });
 app.use((req, res, next) => {
-  if (req.path.indexOf('.') === -1) {
+  // Ignorer les requêtes vers l'API pour la recherche de fichiers HTML
+  if (!req.path.startsWith('/api/') && req.path.indexOf('.') === -1) {
     var file = __dirname + '/theme' + req.path + '.html';
     res.sendFile(file);
   } else {
