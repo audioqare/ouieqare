@@ -206,10 +206,10 @@ gulp.task('generate-sitemap', function () {
     }))
     .pipe(gulp.dest(path.build.dir));
 });
-gulp.task('copy-ads', function() {
-  return gulp.src('./ads.txt')  // Assurez-vous que le chemin est correct
-      .pipe(gulp.dest('./theme')); // Modifiez le chemin de destination selon votre structure
-});
+// gulp.task('copy-ads', function() {
+//   return gulp.src('./ads.txt')  // Assurez-vous que le chemin est correct
+//       .pipe(gulp.dest('./theme')); // Modifiez le chemin de destination selon votre structure
+// });
 
 
 
@@ -247,7 +247,6 @@ gulp.task(
     "plugins:build",
     "others:build",
     "generate-sitemap",
-    "copy-ads",
     "start",
     gulp.parallel("watch:build", function () {
       bs.init({
