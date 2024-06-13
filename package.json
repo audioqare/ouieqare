@@ -6,7 +6,7 @@
   "license": "MIT",
   
   "scripts": {
-    "dev": "gulp",
+    "dev": "gulp && npm run copy-server",
     "copy-server": "ncp ./server.js ./theme/server.js",
     "build": "gulp build && npm run copy-server",
     "prebuild": "npm install -g gulp-cli",
