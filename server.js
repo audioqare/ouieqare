@@ -26,6 +26,17 @@ app.use(cors(corsOptions));
 
 app.use(express.static('theme'));
 
+
+app.use((req, res, next) => {
+  if (req.path.indexOf('.') === -1) {
+    var file = __dirname + '/theme' + req.path + '.html';
+    res.sendFile(file);
+  } else {
+    next();
+  }
+});
+
+
 let accessTokenCache = {
   value: null,
   expiry: null,
