@@ -207,8 +207,8 @@ gulp.task('generate-sitemap', function () {
     .pipe(gulp.dest(path.build.dir));
 });
 gulp.task('copy-ads', function() {
-  return gulp.src('path/to/theme/ads.txt')  // Assurez-vous que le chemin est correct
-      .pipe(gulp.dest('path/to/dist/theme')); // Modifiez le chemin de destination selon votre structure
+  return gulp.src('/theme/ads.txt')  // Assurez-vous que le chemin est correct
+      .pipe(gulp.dest('/theme')); // Modifiez le chemin de destination selon votre structure
 });
 
 
