@@ -43,6 +43,10 @@ var path = {
   },
 };
 
+gulp.task("copy-ads-txt", function () {
+  return gulp.src("source/ads.txt")
+    .pipe(gulp.dest("theme/"));
+});
 
 
 // HTML
@@ -211,6 +215,7 @@ gulp.task(
     "plugins:build",
     "others:build",
     "generate-sitemap",
+    "copy-ads-txt",
     "start",
     gulp.parallel("watch:build", function () {
       bs.init({
