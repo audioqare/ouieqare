@@ -1849,7 +1849,6 @@ body {
 
 .search-container {
   max-width: 300px;
-  margin: 0 auto;
   background: white;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -1867,14 +1866,14 @@ h1 {
 
 .input-field {
   padding: 10px;
-  border: 2px solid #51eba6;
+  border: 2px solid #51eba6; /* Assurez-vous que la variable $primary-color est définie ou remplacée par une couleur hexadécimale. */
   border-radius: 5px;
   font-size: 16px;
 }
 
 .submit-button {
   padding: 10px 20px;
-  background-color: #51eba6;
+  background-color: #51eba6; /* Assurez-vous que la variable $primary-color est définie ou remplacée par une couleur hexadécimale. */
   color: white;
   border: none;
   border-radius: 5px;
