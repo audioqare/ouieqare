@@ -27,14 +27,6 @@ app.use(cors(corsOptions));
 app.use(express.static('theme'));
 
 
-// app.use((req, res, next) => {
-//   if (req.path.indexOf('.') === -1) {
-//     var file = __dirname + '/theme' + req.path + '.html';
-//     res.sendFile(file);
-//   } else {
-//     next();
-//   }
-// });
 app.use((req, res, next) => {
   // Ignorer les requêtes vers l'API pour la recherche de fichiers HTML
   if (!req.path.startsWith('/api/') && req.path.indexOf('.') === -1) {
@@ -166,38 +158,30 @@ app.get('/api/centres', async (req, res) => {
   }
 });
 
+app.get('/api/centres/:id', async (req, res) => {
+  const centerId = req.params.id; // Obtenez l'ID du centre de l'URL
+  console.log("Fetching centre with ID:", centerId);
+  let criteria = `(id:equals:${centerId})`;
 
+  try {
+      const accessToken = await getAccessToken();
+      const response = await axios.get('https://www.zohoapis.com/crm/v2/Accounts/search', {
+          headers: { 'Authorization': `Zoho-oauthtoken ${accessToken}` },
+          params: { criteria }
+      });
+      console.log("Response from Zoho:", response.data);
 
-//Nouvelle route pour récupérer tous les comptes de Zoho CRM
-//Route API pour récupérer tous les comptes
+      if (response.data.data) {
+          res.json(response.data.data[0]); // Assurez-vous de renvoyer l'objet correctement
+      } else {
+          res.status(404).send('Centre non trouvé');
+      }
+  } catch (error) {
+      console.error('Erreur lors de la récupération des données', error);
+      res.status(500).send('Erreur serveur interne');
+  }
+});
 
-// app.get('/api/comptes', async (req, res) => {
-//   try {
-//     const accounts = await fetchZohoAccounts();
-//     res.json(accounts);
-//   } catch (error) {
-//     console.error('Erreur lors de la récupération des comptes', error);
-//     res.status(500).json({ message: 'Erreur lors de la récupération des comptes', error: error.message });
-//   }
-// });
-
-// app.get('/api/autocomplete', async (req, res) => {
-//   const { term } = req.query;
-//   if (!term) {
-//     return res.status(400).json({ error: 'Recherche requise' });
-//   }
-
-//   // Simulez une recherche dans votre base de données ou dans un tableau en mémoire
-//   // Ici, on suppose que vous avez une liste des départements et leurs codes
-//   const departements = [
-//     { name: "Paris (75)", code: "75" },
-//     { name: "Hauts-de-Seine (92)", code: "92" },
-//     // Ajoutez d'autres départements
-//   ];
-
-//   const filtered = departements.filter(dep => dep.code.startsWith(term) || dep.name.toLowerCase().includes(term.toLowerCase()));
-//   res.json(filtered);
-// });
 
 
 app.get('/api/departements', async (req, res) => {
