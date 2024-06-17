@@ -18,7 +18,24 @@
 "description": "Single details"
 })
 
-
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		var params = new URLSearchParams(window.location.search);
+		var centerId = params.get('id');  // Assurez-vous que l'ID est passé dans l'URL
+	
+		fetch(`https://ouieqare.com/api/centres/${centerId}`)
+			.then(response => response.json())
+			.then(data => {
+				document.getElementById('name').textContent = data.name;
+				document.getElementById('phone').textContent = data.phone;
+				document.getElementById('address').textContent = data.address;
+				document.getElementById('description').textContent = data.Description;  // Utiliser 'Description' comme clé
+			})
+			.catch(error => console.error('Erreur lors du chargement des détails du centre:', error));
+	});
+	</script>
+	
+	
 <section class="section case-study">
 	<div class="container">
 		<div class="columns">
@@ -32,22 +49,15 @@
 				<div class="column lg-6 column md-8">
 					<div class="case-content pl-4 mt-4 mt-lg-0">
 						<h3 class="mb-3" id="name"></h3>
-					<p id="phone"></p>
-					<p id="address"></p>
-					<h3>Présentation du centre</h3>
-						<p>Accusamus necessitatibus harum nobis quam omnis tempora cupiditate nihil, vero dolorum porro atque. Suscipit assumenda, minus tempora aliquid, ratione minima optio nihil.</p>
-
-						<ul class="list-unstyled project-info-list">
-							<li><strong>Project Name: </strong>Business Accounting</li>
-
-							<li><strong>Client: </strong>Company Name Inc.</li>
-							<li><strong>Project Start Date:</strong> February 18, 2018</li>
-
-							<li><strong>Project Completion Date:</strong> January 25, 2018 </li>
-							<li><strong>Project url:</strong> www.example.com</li>
-						</ul>
+						<p id="phone"></p>
+						<p id="address"></p>
+						<h3>Présentation du centre</h3>
+						<p id="description"></p>  <!-- Élément pour la description -->
+						<p><i class="fas fa-map-marker-alt"></i> address</p>
+                                    <p><i class="fas fa-phone"></i> 0985407228</p>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>

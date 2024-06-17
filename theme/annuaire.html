@@ -221,7 +221,7 @@
                                     <img src="${item.URL_Image_Centre || 'https://example.com/default-logo.png'}" alt="Logo" class="profile-photo-lg">
                                 </div>
                                 <div class="col-md-6">
-                                    <h5><a href="project-details.html?name=${encodeURIComponent(item.Account_Name)}&phone=${encodeURIComponent(item.Phone || '0985407228')}&address=${encodeURIComponent(item.Rue + ', ' + item.Code_postal + ' ' + item.Ville)}" target="_blank">${item.Account_Name}</a></h5>
+                                    <h5><a href="project-details.html?name=${encodeURIComponent(item.Account_Name)}&id=${item.id}" target="_blank">${item.Account_Name}</a></h5>
                                     <p><i class="fas fa-map-marker-alt"></i> ${item.Rue}, ${item.Code_postal} ${item.Ville}</p>
                                     <p><i class="fas fa-phone"></i> ${item.Phone || '0985407228'}</p>
                                 </div>

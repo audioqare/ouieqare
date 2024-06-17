@@ -1,0 +1,199 @@
+
+
+User
+critereRecherche = "(Stage:equals:Gagnés Fermés) AND (test:equals:true)";
+listAffaires = zoho.crm.searchRecords("Deals",critereRecherche);
+info listAffaires.size();
+// Nouvelle structure de données pour regrouper les affaires par compte
+mapComptesAffaires = Map();
+// Collecte et regroupement des informations des affaires
+for each  affaire in listAffaires
+{
+	nomDuCompte = affaire.get("Account_Name").get("name");
+	idCompte = affaire.get("Account_Name").get("id");
+	if(!mapComptesAffaires.containsKey(nomDuCompte))
+	{
+		mapComptesAffaires.put(nomDuCompte,List());
+	}
+	tempAffairesList = mapComptesAffaires.get(nomDuCompte);
+	tempAffairesList.add(affaire);
+	mapComptesAffaires.put(nomDuCompte,tempAffairesList);
+	// Réassigne la liste mise à jour à la map
+	// Autres détails de l'affaire
+	departement = affaire.get("D_partement");
+	codePostal = affaire.get("Code_postal");
+	typeAppareil = affaire.get("Type_d_appareil");
+	montantAppareils = affaire.get("Montant_appareilles");
+}
+// Création de la facture pour chaque compte
+for each  nomDuCompte in mapComptesAffaires.keys()
+{
+	listAffairesParCompte = mapComptesAffaires.get(nomDuCompte);
+	montantTotalCompte = 0;
+	for each  affaireCompte in listAffairesParCompte
+	{
+		idCompte = affaireCompte.get("Account_Name").get("id");
+		compte = zoho.crm.getRecordById("Accounts",idCompte);
+		if(compte != null)
+		{
+			type_partenariat = compte.get("Type_de_partenariat");
+			maisonMere = compte.get("Maison_m_re");
+			montantClasse1 = compte.get("Type_1");
+			montantClasse2 = compte.get("Type_2");
+			//Siret = compte.get("Siret");
+			Adresse = compte.get("Rue");
+			CP = compte.get("Code_postal");
+			VilleFacture = compte.get("Ville");
+			info "ville:" + VilleFacture;
+			pourcentage = compte.get("Pourcentage_r_mun_ration");
+			factureSociete = compte.get("Facture_societe");
+			info "facturesociete : " + factureSociete;
+			PartenaireId = compte.get("Contact_r_ception_de_factures").get("id");
+			//PartenaireNom = compte.get("Contact_r_ception_de_factures").get("name");
+			// 			emailCompte = compte.get("E_mail_Partenaire");
+			info "partenaireID=" + PartenaireId;
+			//info "partenaireNom=" + PartenaireNom;
+			contactPartenaire = zoho.crm.getRecordById("Contacts",PartenaireId);
+			if(contactPartenaire != null)
+			{
+				emailPartenaire = contactPartenaire.get("Email");
+				info "LE MAIL2: " + emailPartenaire;
+				emailCompte = emailPartenaire;
+				info emailCompte;
+				updateDetails = Map();
+				updateDetails.put("E_mail_Partenaire",emailPartenaire);
+				zoho.crm.updateRecord("Accounts",idCompte,updateDetails);
+			}
+			listeDetailsProduits = List();
+			productId = 5799711000008734001;
+			produit = zoho.crm.getRecordById("Products",productId);
+			dernierNumeroFactureFrance = toLong(produit.get("Dernier_numero_de_facture_France").toString());
+			info "dernierNumeroFactureFrance :" + dernierNumeroFactureFrance;
+            dernierNumeroFactureIsrael = toLong(produit.get("Dernier_numero_de_facture_Israel").toString());
+			info "dernierNumeroFactureIsrael :" + dernierNumeroFactureIsrael;
+            nouveauNumeroFactureFrance = 0;
+			nouveauNumeroFactureIsrael = 0;
+			if(factureSociete == "France")
+			{
+				produit.put("Tax",List("TVA - 20.0 %"));
+				nouveauNumeroFactureFrance = dernierNumeroFactureFrance + 1;
+				info "nouveauNumeroFactureFrance :" + nouveauNumeroFactureFrance;
+			}
+			else
+			{
+				produit.put("Tax",List());
+				nouveauNumeroFactureIsrael = dernierNumeroFactureIsrael + 1;
+				info "nouveauNumeroFactureIsrael :" + nouveauNumeroFactureIsrael;
+			}
+
+			for each  affaireCompte in listAffairesParCompte
+			{
+				nom_client = affaireCompte.get("Contact_Name").get("name");
+				info "nom_client:" + nom_client;
+				typeAppareil = affaireCompte.get("Type_d_appareil");
+				info typeAppareil;
+				montantAppareils = affaireCompte.get("Montant_appareilles");
+				montantFacture = 0;
+
+				if(type_partenariat == "Fixe")
+				{
+					if(typeAppareil == "Classe 1")
+					{
+						montantFacture = montantClasse1;
+					}
+					else if(typeAppareil == "Classe 2")
+					{
+						montantFacture = montantClasse2;
+						info "Montant Facture: " + montantFacture;
+					}
+				}
+				else if(type_partenariat == "Pourcentage")
+				{
+					montantFacture = montantAppareils * pourcentage / 100.0;
+				}
+				zoho.crm.updateRecord("Products",productId,produit);
+				
+				updateDetails = Map();
+				if(factureSociete.equals("France")) 
+				{
+                 updateDetails.put("Dernier_numero_de_facture_France", nouveauNumeroFactureFrance);
+                 } else if(factureSociete.equals("Israel")) 
+                 {
+                  updateDetails.put("Dernier_numero_de_facture_Israel", nouveauNumeroFactureIsrael);
+                 }
+
+               //Mise à jour du produit dans Zoho CRM avec le nouveau dernier numéro de facture
+               zoho.crm.updateRecord("Products", productId, updateDetails);
+				//         montantFacture = affaire.get("Montant_Facture");
+				montantTotalCompte = montantTotalCompte + montantFacture;
+				// 				nom_client = affaire.get("Contact_Name").get("name");
+				id_client = affaireCompte.get("id");
+				info "idclient=" + id_client;
+				detailProduit = Map();
+				detailProduit.put("product",5799711000008734001);
+				detailProduit.put("product_description",nom_client + " - " + typeAppareil);
+				detailProduit.put("quantity",1);
+				detailProduit.put("Tax",20);
+				detailProduit.put("list_price",montantFacture);
+				listeDetailsProduits.add(detailProduit);
+			}
+			
+		}
+
+		// Préparation des données pour la nouvelle facture
+
+		    
+		nouvelleFacture = Map();
+		nouvelleFacture.put("Contact_Name",PartenaireId);
+		nouvelleFacture.put("Nom_de_l_affaire",id_client);
+		nouvelleFacture.put("Subject","Facture " + " " + nomDuCompte + " " + today);
+		nouvelleFacture.put("Account_Name",nomDuCompte);
+		nouvelleFacture.put("Mail_du_compte",emailPartenaire);
+		//nouvelleFacture.put("Siret",Siret);
+		//nouvelleFacture.put("Mail_du_compte", emailFacture);
+		nouvelleFacture.put("Billing_Street",Adresse);
+		nouvelleFacture.put("Billing_Country","France");
+		nouvelleFacture.put("Billing_Code",CP);
+		nouvelleFacture.put("Billing_City",VilleFacture);
+		nouvelleFacture.put("Invoice_Date",today);
+		nouvelleFacture.put("Product_Details",listeDetailsProduits);
+		nouvelleFacture.put("Grand_Total",montantTotalCompte);
+		if(factureSociete == "France")
+		{
+			nouvelleFacture.put("B_n_ficiaire","AUDIOQARE");
+			nouvelleFacture.put("IBAN","FR76 1695 8000 0142 3713 6209 079");
+			nouvelleFacture.put("BIC","QNTOFRP1XXX");
+			nouvelleFacture.put("Num_ro_de_facture_France",nouveauNumeroFactureFrance);
+		}
+		else
+		{
+			//if(factureSociete == "Israel")
+			nouvelleFacture.put("B_n_ficiaire","DreamTeam Call LTD");
+			nouvelleFacture.put("IBAN","IE50CITI99005170394114");
+			nouvelleFacture.put("BIC","CITIIE2X");			
+			nouvelleFacture.put("Num_ro_de_facture_Isra_l",nouveauNumeroFactureIsrael);
+		}
+	}
+	
+	// Créer la nouvelle facture
+	// 	zoho.crm.updateRecord("Deals",id_client,{"Facture_dit_e":true});
+	listAffairesReussies = List();
+	createRecord = zoho.crm.createRecord("Invoices",nouvelleFacture);
+	info "Réponse de createRecord: " + createRecord.toString();
+	if(createRecord.containsKey("id"))
+	{
+		info "Facture créée avec succès pour le compte : " + nomDuCompte;
+		for each  affaire in listAffairesParCompte
+		{
+			//idAffaire = affaire.get("id");
+			listAffairesReussies.add(affaire.get("id"));
+		}
+	}
+	for each  idAffaire in listAffairesReussies
+	{
+		zoho.crm.updateRecord("Deals",idAffaire,{"test":false});
+		info "Mise à jour du champ 'test' pour l'affaire ID : " + idAffaire;
+	}
+
+}
+return "";
