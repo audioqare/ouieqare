@@ -43,9 +43,7 @@
 				var centreImage = document.getElementById('centreImage');
             if (data.URL_Image_Centre) {
                 centreImage.src = data.URL_Image_Centre;
-            } else {
-                centreImage.src = "images/about/about.jpg"; // Default image if URL_Image_Centre is not available
-            }
+            } 
 			})
 			.catch(error => {
 				console.error('Erreur lors du chargement des détails du centre:', error);
@@ -75,7 +73,7 @@
             </div>
 			<div class="column lg-6">
                 <div class="case-img">
-                    <img src="images/about/about.jpg" alt="Centre Image" style="max-width: 300px; height: auto;" id="centreImage">
+                    <img  alt="Centre Image" style="max-width: 300px; height: auto;" id="centreImage">
                 </div>
             </div>
 			
@@ -84,3 +82,4 @@
         </div>
     </div>
 </section>
+@@include('blocks/footer.htm')
