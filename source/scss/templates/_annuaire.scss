@@ -14,7 +14,9 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 40px; /* Ajoutez cette ligne pour créer plus d'espace après la barre de recherche */
 }
+
 
 .input-field {
   padding: 10px;
@@ -65,8 +67,8 @@ h1 {
   }
   
   img.profile-photo-lg{
-    height: 80px;
-    width: 80px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
   }
 
@@ -80,3 +82,45 @@ h1 {
     font-size: 16px;
     transition: background-color 0.3s;
   }
+
+  .card {
+    display: flex;
+    align-items: stretch; /* Assurez-vous que les éléments s'étirent pour remplir la hauteur */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.card-content {
+    flex: 1; /* Prend la majorité de l'espace */
+    padding: 10px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.card-image {
+    flex: 0 0 150px; /* Largeur plus large pour l'image */
+    background: #f0f0f0; /* Couleur de fond si l'image ne couvre pas tout */
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #068572;
+}
