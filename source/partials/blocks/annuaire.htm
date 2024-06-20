@@ -6,8 +6,20 @@
     <meta name="description" content="Trouvez un centre d'audiologie certifié près de chez vous à l'aide de notre annuaire complet. Consultations et équipements auditifs disponibles.">
     <meta name="keywords" content="annuaire audiologie, centres auditifs, consultation auditive, équipement auditif, audioprothésistes certifiés">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMlJYRouu0WmSpLglvFn_WJGPWiWp0Yo0&libraries=places&callback=initAutocomplete" async defer></script>
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/googleMapsKey')
+            .then(response => response.json())
+            .then(data => {
+                let script = document.createElement('script');
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&libraries=places&callback=initAutocomplete`;
+                script.async = true;
+                script.defer = true;
+                document.head.appendChild(script);
+            })
+            .catch(error => console.error('Error loading the Google Maps script:', error));
+    });
+
     function initAutocomplete() {
         var input = document.getElementById('searchInput');
         var options = {
@@ -31,47 +43,44 @@
     }
 
     function initiateSearch(query) {
-    let url = new URL(`${window.location.origin}/api/centres`);
-    url.searchParams.append('query', query);
-    fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not OK');
-            return response.json();
-        })
-        .then(data => {
-            const resultsContainer = document.getElementById("results");
-            resultsContainer.innerHTML = "";
-            if (data.length > 0) {
-                data.forEach(item => {
-                    const userDiv = document.createElement("div");
-                    userDiv.className = "card";
-                    userDiv.innerHTML = `
-                        <div class="card-content">
-                            <div class="card-body">
-                                <h5><a href="project-details.html?name=${encodeURIComponent(item.Account_Name)}&id=${item.id}" target="_blank">${item.Account_Name}</a></h5>
-                                <p><i class="fas fa-map-marker-alt"></i> ${item.Rue}, ${item.Code_postal} ${item.Ville}</p>
-                                <p><i class="fas fa-phone"></i> 09.85.40.72.28</p>
-                                <button class="btn btn-primary" onclick="window.open('https://tally.so/r/wvBMdQ', '_blank')">Prendre RDV</button>
+        let url = new URL(`${window.location.origin}/api/centres`);
+        url.searchParams.append('query', query);
+        fetch(url)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not OK');
+                return response.json();
+            })
+            .then(data => {
+                const resultsContainer = document.getElementById("results");
+                resultsContainer.innerHTML = "";
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        const userDiv = document.createElement("div");
+                        userDiv.className = "card";
+                        userDiv.innerHTML = `
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h5><a href="project-details.html?name=${encodeURIComponent(item.Account_Name)}&id=${item.id}" target="_blank">${item.Account_Name}</a></h5>
+                                    <p><i class="fas fa-map-marker-alt"></i> ${item.Rue}, ${item.Code_postal} ${item.Ville}</p>
+                                    <p><i class="fas fa-phone"></i> 09.85.40.72.28</p>
+                                    <button class="btn btn-primary" onclick="window.open('https://tally.so/r/wvBMdQ', '_blank')">Prendre RDV</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-image">
-                            <img src="${item.URL_Image_Centre || 'https://example.com/default-logo.png'}" alt="Logo Centre">
-                        </div>
-                    `;
-                    resultsContainer.appendChild(userDiv);
-                });
-            } else {
-                resultsContainer.innerHTML = '<p>Aucun centre trouvé pour cette recherche.</p>';
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            document.getElementById('results').innerHTML = '<p>Aucun centre dans cette zone.</p>';
-        });
-}
-
-
-
+                            <div class="card-image">
+                                <img src="${item.URL_Image_Centre || 'https://example.com/default-logo.png'}" alt="Logo Centre">
+                            </div>
+                        `;
+                        resultsContainer.appendChild(userDiv);
+                    });
+                } else {
+                    resultsContainer.innerHTML = '<p>Aucun centre trouvé pour cette recherche.</p>';
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById('results').innerHTML = '<p>Aucun centre dans cette zone.</p>';
+            });
+    }
     </script>
 </head>
 <body>
