@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 
 // Configuration des options CORS
-const allowedOrigins = ['https://www.ouieqare.com', 'http://localhost:3000', 'http://localhost', 'https://ouieqare-635825c2fd81.herokuapp.com'];
+const allowedOrigins = ['https://www.ouieqare.com', 'https://ouieqare.com/project-details.html','http://localhost:3000', 'http://localhost', 'https://ouieqare-635825c2fd81.herokuapp.com'];
 const corsOptions = {
     origin: allowedOrigins,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
