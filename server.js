@@ -159,9 +159,9 @@ app.get('/api/centres', async (req, res) => {
 });
 
 
-app.get('/api/googleMapsKey', (req, res) => {
-  res.json({ key: process.env.GOOGLE_API_KEY });
-});
+// app.get('/api/googleMapsKey', (req, res) => {
+//   res.json({ key: process.env.GOOGLE_API_KEY });
+// });
 
 app.get('/api/centres/:id', async (req, res) => {
   const centerId = req.params.id; // Obtenez l'ID du centre de l'URL
