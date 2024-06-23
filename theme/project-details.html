@@ -145,20 +145,195 @@
 	
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var params = new URLSearchParams(window.location.search);
-        var name = params.get('name');
-        if (name) {
-            document.title = decodeURIComponent(name) + " - Détails du Projet"; // Modifier le titre de la page
-            var pageTitleElements = document.querySelectorAll('.page-title h2');
-            pageTitleElements.forEach(function(element) {
-                element.textContent = decodeURIComponent(name); // Modifier les titres visibles sur la page
-            });
-        }
-    });
-</script>
-<section class="page-title bg-1">
+ <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var params = new URLSearchParams(window.location.search);
+            var name = params.get('name');
+            var decodedName = decodeURIComponent(name);
+            // Ajouter des espaces pour une meilleure lisibilité
+            var displayName = decodedName.replace(/([A-Z])/g, ' $1').trim();
+
+            if (name) {
+                document.title = displayName + " - Détails du Projet";
+                var pageTitleElements = document.querySelectorAll('.page-title h2');
+                pageTitleElements.forEach(function(element) {
+                    element.textContent = displayName;
+                });
+            }
+
+            var centerId = params.get('id');
+            var apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://www.ouieqare.com';
+            console.log("Fetching details for center ID:", centerId);
+
+            fetch(`${apiBaseUrl}/api/centres/${centerId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        console.error("Failed to fetch details:", response.statusText);
+                        throw new Error('Failed to fetch');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Data received:", data);
+                    document.getElementById('name').textContent = data.name || displayName; // Utiliser le nom formatté si 'name' est absent
+                    document.getElementById('phone').textContent = data.phone;
+                    document.getElementById('address').textContent = data.Rue + ', ' + data.Code_postal + ' ' + data.Ville;
+                    document.getElementById('description').textContent = data.Description;
+
+                    var centreImage = document.getElementById('centreImage');
+                    if (data.URL_Image_Centre) {
+                        centreImage.src = data.URL_Image_Centre;
+                    } else {
+                        centreImage.src = 'https://example.com/default-logo.png';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement des détails du centre:', error);
+                    document.getElementById('description').textContent = 'Description non disponible';
+                });
+        });
+    </script>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="7c070748-120a-4e15-981f-737aa466dbbe";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+  <meta name="google-site-verification" content="q2tX3K62i0Ap6OIEvGfNiUL6eov7dwc_ijfmio6ksZg" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Ouieqare offre des conseils gratuits en audiologie et aide à s'équiper d'appareils auditifs sur mesure. Découvrez nos services pour améliorer votre audition confortablement. Contactez nous pour effectuer un bilan auditif gratuit.">
+  <meta name="keywords" content="Ouieqare, audiologie, appareils auditifs, appareils auditifs gratuits, bilan auditif gratuit, aides auditives sur mesure, conseils audiologie gratuite">
+
+  <meta name="author" content="Ouieqare.com">
+  <meta name="google-adsense-account" content="ca-pub-9198491242632785">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9198491242632785"
+     crossorigin="anonymous"></script>
+  
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <!-- theme meta -->
+  <meta name="theme-name" content="Ouieqare" />
+
+  <title>Vos appareils auditifs gratuits et sur mesure - Ouieqare</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="../images/logo-w.png" />
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bulma/bulma.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/themify/css/themify-icons.css">
+  <link rel="stylesheet" href="plugins/fontawesome/css/all.css">
+  <link rel="stylesheet" href="plugins/magnific-popup/dist/magnific-popup.css">
+    <link rel="stylesheet" href="plugins/modal-video/modal-video.css">
+    <link rel="stylesheet" href="plugins/animate-css/animate.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- navigation -->
+<div id="navbar" class="navigation nav-text-white py-4 other-nav">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="index.html">
+					<img src="images/logo3.png" alt="logo">
+				</a>
+				<button role="button" class="navbar-burger burger" data-hidden="true" data-target="navigation">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+
+			<div class="navbar-menu" id="navigation">
+				<ul class="navbar-start ml-auto">
+					<li class="navbar-item">
+						<a class="navbar-link" href="index.html">Accueil</a>
+					</li>
+					
+					<li class="navbar-item">
+						<a class="navbar-link" href="aides-et-conseils-1.html">Aide & conseils</a>
+					</li>
+					
+					<li class="navbar-item">
+					   <a class="navbar-link" href="annuaire.html">Annuaire Des Centres</a>
+				   </li>
+					
+
+					<li class="navbar-item">
+					   <a class="navbar-link" href="faq.html">FAQ</a>
+				   </li>
+
+				   <li class="navbar-item">
+					   <a class="navbar-link" href="partenaire.html">Partenaire</a>
+				   </li>
+
+					<!-- <li class="navbar-item has-dropdown">
+						<a class="navbar-link">Partenaire</a>
+						<div class="navbar-dropdown">
+							<a class="navbar-item" href="service.html">Service</a>
+							<a class="navbar-item" href="pricing.html">Pricing</a>
+							<a class="navbar-item" href="blog-sidebar.html">Blog with sidebar</a>
+							<a class="navbar-item" href="blog-single.html">Blog Single</a>
+						</div>
+					</li> -->
+
+					<!-- <li class="navbar-item">
+						<a class="navbar-link active" href="contact.html">Contact</a>
+					</li> -->
+				</ul>
+				<ul class="navbar-end ml-0">
+					<li class="navbar-item">
+						<a href="tel:0189471705" target="_blank" class="btn btn-main">
+							<i class="fa fa-phone"></i> 01.89.47.17.05 </a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+<!-- Page Title Section -->
+<!-- <section class="page-title bg-1">
+	<div class="container">
+	   <div class="columns">
+		  <div class="column is-12">
+			 <div class="block has-text-centered">
+				<ul class="list-inline breadcumb-nav">
+				    You can add breadcrumb items here if needed
+				</ul>
+			 </div>
+		  </div>
+	   </div>
+	</div>
+ </section> -->
+ <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var path = window.location.pathname;
+	  var eligibilityButton = document.getElementById('eligibilityButton');
+	  
+	  if (path.includes('about.html')) {
+		// Change le lien et le texte pour la page 'about.html'
+		eligibilityButton.href = "https://tally.so/r/meBJKo";
+		eligibilityButton.innerHTML = 'Devenez Partenaire<i class="fa fa-angle-right ml-2"></i>';
+	  }
+	});
+  </script>
+  
+ 
+	
+
+    <section class="page-title bg-1">
    <div class="container" style="padding-top: 0px; padding-bottom: 0px; margin-top: 0px; margin-bottom: -50px;">
       <div class="columns">
          <div class="column is-12">
@@ -177,69 +352,31 @@
    </div>
 </section>
 
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-		var params = new URLSearchParams(window.location.search);
-		var centerId = params.get('id');
-		var apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://www.ouieqare.com';
-		console.log("Fetching details for center ID:", centerId);  // Debug: Vérifiez l'ID récupéré
-	
-		fetch(`${apiBaseUrl}/api/centres/${centerId}`)
-			.then(response => {
-				if (!response.ok) {
-					console.error("Failed to fetch details:", response.statusText);
-					throw new Error('Failed to fetch');
-				}
-				return response.json();
-			})
-			.then(data => {
-				console.log("Data received:", data);  // Debug: Inspect the data
-				document.getElementById('name').textContent = data.name;
-				document.getElementById('phone').textContent = data.phone;
-				document.getElementById('address').textContent = data.Rue + ', ' + data.Code_postal + ' ' + data.Ville;
-				document.getElementById('description').textContent = data.Description; 
-
-				var centreImage = document.getElementById('centreImage');
-            if (data.URL_Image_Centre) {
-                centreImage.src = data.URL_Image_Centre;
-            }  else {
-        centreImage.src = 'https://example.com/default-logo.png';  // Fournissez une image par défaut en cas de manque
-    }
-			})
-			.catch(error => {
-				console.error('Erreur lors du chargement des détails du centre:', error);
-				document.getElementById('description').textContent = 'Description non disponible';  // Gestion d'erreur
-			});
-	});
-	</script>
-<section class="section case-study">
-    <div class="container">
-        <div class="columns">
-        <div class="column lg-6 column md-8">
-            <div class="case-content pl-4 mt-4 mt-lg-0">
-                <h3 class="mb-3" id="name"></h3>
-                <p id="phone"></p>                    
-                <h3>Présentation du centre</h3>
-				<p id="address"><i class="fas fa-map-marker-alt"></i></p>
-				<p><i class="fas fa-phone"></i> 09.85.40.72.28</p> 
-                <p id="description"></p>
-            </div>
-			<div class="col-md-4 ">
-				<button class="btn btn-primary" onclick="window.open('https://tally.so/r/wvBMdQ', '_blank')">Prendre RDV</button>
-			</div>
-        </div>
-		<div class="column lg-6">
-            <div class="case-img">
-                <img  alt="Centre Image" style="max-width: 300px; height: auto;" id="centreImage">
+    <section class="section case-study">
+        <div class="container">
+            <div class="columns">
+                <div class="column lg-6 column md-8">
+                    <div class="case-content pl-4 mt-4 mt-lg-0">
+                        <h3 class="mb-3" id="name"></h3>
+                        <p id="phone"></p>
+                        <h3>Présentation du centre</h3>
+                        <p id="address"><i class="fas fa-map-marker-alt"></i></p>
+                        <p><i class="fas fa-phone"></i> 09.85.40.72.28</p>
+                        <p id="description"></p>
+                    </div>
+                    <div class="col-md-4 ">
+                        <button class="btn btn-primary" onclick="window.open('https://tally.so/r/wvBMdQ', '_blank')">Prendre RDV</button>
+                    </div>
+                </div>
+                <div class="column lg-6">
+                    <div class="case-img">
+                        <img alt="Centre Image" style="max-width: 300px; height: auto;" id="centreImage">
+                    </div>
+                </div>
             </div>
         </div>
-		
-
-
-    </div>
-</div>
-</section>
-<!-- footer Start -->
+    </section>
+    <!-- footer Start -->
 <footer class="footer section">
 	<div class="container">
 		<div class="columns is-multiline">
@@ -300,3 +437,5 @@
 		</div>
 	</div>
 </footer>
+</body>
+</html>
