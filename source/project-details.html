@@ -44,7 +44,9 @@
 				var centreImage = document.getElementById('centreImage');
             if (data.URL_Image_Centre) {
                 centreImage.src = data.URL_Image_Centre;
-            } 
+            }  else {
+        centreImage.src = 'https://example.com/default-logo.png';  // Fournissez une image par défaut en cas de manque
+    }
 			})
 			.catch(error => {
 				console.error('Erreur lors du chargement des détails du centre:', error);
