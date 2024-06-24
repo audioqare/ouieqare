@@ -187,6 +187,34 @@ app.get('/api/centres/:id', async (req, res) => {
   }
 });
 
+app.get('/api/centres/:name/:postalCode', async (req, res) => {
+  const { name, postalCode } = req.params;
+  console.log("Fetching centre with Name and Postal Code:", name, postalCode);
+
+  // Préparation des critères de recherche pour Zoho CRM
+  let criteria = `((Account_Name:equals:${name}) and (Code_postal:equals:${postalCode}))`;
+
+  try {
+      const accessToken = await getAccessToken();
+      const response = await axios.get('https://www.zohoapis.com/crm/v2/Accounts/search', {
+          headers: { 'Authorization': `Zoho-oauthtoken ${accessToken}` },
+          params: { criteria }
+      });
+      console.log("Response from Zoho:", response.data);
+      console.log("Full Response from Zoho:", response); 
+
+      if (response.data.data && response.data.data.length > 0) {
+          res.json(response.data.data[0]); // Retourne le premier résultat correspondant
+      } else {
+          res.status(404).send('Centre non trouvé');
+      }
+  } catch (error) {
+      console.error('Erreur lors de la récupération des données', error);
+      res.status(500).send('Erreur serveur interne');
+  }
+});
+
+
 
 
 app.get('/api/departements', async (req, res) => {

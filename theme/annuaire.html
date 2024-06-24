@@ -174,8 +174,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Annuaire Des Centres - Ouieqare</title>
-    <meta name="description" content="Trouvez un centre d'audiologie certifié près de chez vous à l'aide de notre annuaire complet. Consultations et équipements auditifs disponibles.">
-    <meta name="keywords" content="annuaire audiologie, centres auditifs, consultation auditive, équipement auditif, audioprothésistes certifiés">
+    <meta name="description" content="Trouvez un centre d'audiologie certifié près de chez vous à l'aide de notre annuaire complet Ouieqare. Consultations et équipements auditifs disponibles.">
+    <meta name="keywords" content="annuaire audiologie, annuaire audition, annuaire ouieqare, annuaire centres auditifs, consultation auditive, équipement auditif, audioprothésistes certifiés">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMlJYRouu0WmSpLglvFn_WJGPWiWp0Yo0&libraries=places&callback=initAutocomplete" async defer></script>
     <script>
@@ -233,7 +233,7 @@
                             <div class="card-content">
                                 <div class="card-body">
                                     <h5>
-    <a href="project-details.html?name=${encodeURIComponent(item.Account_Name.replace(/\s+/g, ''))}&id=${item.id}" target="_blank">${item.Account_Name}</a>
+    <a href="centre?name=${encodeURIComponent(item.Account_Name.replace(/\s+/g, ''))}&id=${item.id}" target="_blank">${item.Account_Name}</a>
 </h5>
 <p><i class="fas fa-map-marker-alt"></i> ${item.Rue}, ${item.Code_postal} ${item.Ville}</p>
                                     <p><i class="fas fa-phone"></i> 09.85.40.72.28</p>
@@ -273,7 +273,6 @@
     </section>
 </body>
 </html>
-
             </div>
             </div>   
         </div>
