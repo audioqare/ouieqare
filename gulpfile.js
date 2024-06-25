@@ -48,10 +48,10 @@ gulp.task("copy-ads-txt", function () {
     .pipe(gulp.dest("theme/"));
 });
 
-// gulp.task("copy-robots-txt", function () {
-//   return gulp.src("robots.txt")  // Assurez-vous que le chemin d'accès est correct
-//     .pipe(gulp.dest("theme/"));  // Modifier le répertoire de destination si nécessaire
-// });
+gulp.task("copy-robots-txt", function () {
+  return gulp.src("robots.txt")  // Assurez-vous que le chemin d'accès est correct
+    .pipe(gulp.dest("theme/"));  // Modifier le répertoire de destination si nécessaire
+});
 
 
 
@@ -222,7 +222,7 @@ gulp.task(
     "others:build",
     "generate-sitemap",
     "copy-ads-txt",
-    // "copy-robots-txt",
+    "copy-robots-txt",
     "start",
     gulp.parallel("watch:build", function () {
       bs.init({
