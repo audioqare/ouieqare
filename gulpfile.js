@@ -16,8 +16,6 @@ const nodemon = require('gulp-nodemon');
 //const cssnano = require('gulp-cssnano');
 // const uglify = require('gulp-uglify');
 
-
-
 // Importation dynamique de del
 async function clean() {
   const del = await import('del');
