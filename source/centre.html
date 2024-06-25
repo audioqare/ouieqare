@@ -3,51 +3,53 @@
 
  <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var params = new URLSearchParams(window.location.search);
-            var name = params.get('name');
-            var decodedName = decodeURIComponent(name);
-            // Ajouter des espaces pour une meilleure lisibilité
-            var displayName = decodedName.replace(/([A-Z])/g, ' $1').trim();
+    var params = new URLSearchParams(window.location.search);
+    var name = params.get('nom').replace(/-/g, ' ');  // Remplacer les tirets par des espaces
+    var postalCode = params.get('codePostal');
+    var city = params.get('ville').replace(/-/g, ' ');  // Remplacer les tirets par des espaces
 
-            if (name) {
-                document.title = displayName + " - Détails du Projet";
-                var pageTitleElements = document.querySelectorAll('.page-title h2');
-                pageTitleElements.forEach(function(element) {
-                    element.textContent = displayName;
-                });
+    
+
+    var apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://www.ouieqare.com';
+
+    fetch(`${apiBaseUrl}/api/centres/${encodeURIComponent(name)}/${postalCode}`)
+        .then(response => {
+            if (!response.ok) {
+                console.error("Failed to fetch details:", response.statusText);
+                throw new Error('Failed to fetch');
             }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Data received:", data);
+            var formattedName = name.replace(/([A-Z])/g, ' $1').trim();  // Ajoute des espaces avant les majuscules pour la lisibilité
+            document.title = formattedName + " - Détails du Centre";
+            var pageTitleElements = document.querySelectorAll('.page-title h2');
+            pageTitleElements.forEach(function(element) {
+                element.textContent = formattedName;
+            });
 
-            var centerId = params.get('id');
-            var apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://www.ouieqare.com';
-            console.log("Fetching details for center ID:", centerId);
 
-            fetch(`${apiBaseUrl}/api/centres/${centerId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        console.error("Failed to fetch details:", response.statusText);
-                        throw new Error('Failed to fetch');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Data received:", data);
-                    document.getElementById('name').textContent = data.name || displayName; // Utiliser le nom formatté si 'name' est absent
-                    document.getElementById('phone').textContent = data.phone;
-                    document.getElementById('address').textContent = data.Rue + ', ' + data.Code_postal + ' ' + data.Ville;
-                    document.getElementById('description').textContent = data.Description;
 
-                    var centreImage = document.getElementById('centreImage');
-                    if (data.URL_Image_Centre) {
-                        centreImage.src = data.URL_Image_Centre;
-                    } else {
-                        centreImage.src = 'https://example.com/default-logo.png';
-                    }
-                })
-                .catch(error => {
-                    console.error('Erreur lors du chargement des détails du centre:', error);
-                    document.getElementById('description').textContent = 'Description non disponible';
-                });
+
+            document.getElementById('name').textContent = data.Account_Name;
+            //document.getElementById('phone').textContent = data.Phone;
+            document.getElementById('address').textContent = data.Rue + ', ' + data.Code_postal + ' ' + data.Ville;
+            document.getElementById('description').textContent = data.Description;
+
+            var centreImage = document.getElementById('centreImage');
+            if (data.URL_Image_Centre) {
+                centreImage.src = data.URL_Image_Centre;
+            } else {
+                centreImage.src = 'https://example.com/default-logo.png';
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des détails du centre:', error);
+            document.getElementById('description').textContent = 'Description non disponible';
         });
+});
+
     </script>
 </head>
 <body>
@@ -61,7 +63,7 @@
                 <div class="column lg-6 column md-8">
                     <div class="case-content pl-4 mt-4 mt-lg-0">
                         <h3 class="mb-3" id="name"></h3>
-                        <p id="phone"></p>
+                        <!-- <p id="phone"></p> -->
                         <h3>Présentation du centre</h3>
                         <p id="address"><i class="fas fa-map-marker-alt"></i></p>
                         <p><i class="fas fa-phone"></i> 09.85.40.72.28</p>

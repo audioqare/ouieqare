@@ -187,6 +187,8 @@ app.get('/api/centres/:id', async (req, res) => {
   }
 });
 
+
+
 app.get('/api/centres/:name/:postalCode', async (req, res) => {
   const { name, postalCode } = req.params;
   console.log("Fetching centre with Name and Postal Code:", name, postalCode);
