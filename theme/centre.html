@@ -170,7 +170,7 @@
         .then(data => {
             console.log("Data received:", data);
             var formattedName = name.replace(/([A-Z])/g, ' $1').trim();  // Ajoute des espaces avant les majuscules pour la lisibilité
-            document.title = formattedName + " - " + city + " " + postalCode + " - Détails du Centre";
+            document.title = formattedName + " - " + postalCode + " " + city + " - Détails du Centre";
             var pageTitleElements = document.querySelectorAll('.page-title h2');
             pageTitleElements.forEach(function(element) {
                 element.textContent = formattedName;
